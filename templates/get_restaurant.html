@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Restaran{% endblock title %}
+{% block content %}
+<div style="display: flex; justify-content: center; ">
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{restaurant.image.url}}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{restaurant.name}}</h5>
+          <h4 class="card-title">{{restaurant.category}}</h4>
+          <p class="card-text">{{restaurant.description}}</p>
+          <p class="card-text"><small class="text-body-secondary">{{restaurant.address}}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card-body" style="display: flex; justify-content: center; gap: 5%;">
+  <a href="{% url "upd_res" restaurant.id %}" class="btn btn-primary" style="width: 100px;">update</a>
+  <a href="{% url "del_res" restaurant.id %}" class="btn btn-primary" style="width: 100px;">delete</a>
+  <a href="{% url "reviews" restaurant.id %}" class="btn btn-primary" style="width: 100px;">reviews</a>
+</div>
+
+{% endblock content %}

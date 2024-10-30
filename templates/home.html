@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}{% endblock title %}
+{% block content %}
+<style>
+  /* General Styles */
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+/* Card Container */
+.card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+/* Card Image */
+.card img {
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Card Title */
+.card-title {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Card Description */
+.card-text {
+    color: #666;
+}
+
+/* Button Styles */
+.btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Flex Container */
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Centered Add Button */
+.add-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+</style>
+<div class="flex-container">
+    {% for restaurant in restaurants %}
+        <a href="{% url 'get_res' restaurant.id %}" style="text-decoration: none;">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ restaurant.image.url }}" class="img-fluid rounded-start" alt="{{ restaurant.name }}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ restaurant.name }}</h5>
+                            <h4 class="card-title">{{ restaurant.category }}</h4>
+                            <p class="card-text">{{ restaurant.description }}</p>
+                            <p class="card-text"><small class="text-body-secondary">{{ restaurant.address }}</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+<div class="add-btn-container">
+    <a href="{% url 'add_res' %}" class="btn">Add Restaurant</a>
+</div>
+{% endblock content %}

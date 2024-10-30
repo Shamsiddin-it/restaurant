@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}reviews{% endblock title %}
+{% block content %}
+<div style="display: flex; flex-wrap: wrap; gap: 3%; justify-content: center;">
+{% for review in reviews %}
+<a href="{% url 'get_review' review.id %}" style="text-decoration: none;">
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{review.restaurant}}</h5>
+          <h4 class="card-title">{{review.rating}}</h4>
+          <p class="card-text">{{review.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
+{% endfor %}
+</div>
+<div style="display: flex; justify-content: center;">
+    <a href="{% url 'add_review' %}" class="btn btn-primary">add review</a>
+</div>
+{% endblock content %}
